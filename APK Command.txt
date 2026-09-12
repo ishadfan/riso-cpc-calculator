@@ -1,0 +1,1 @@
+C:\Users\shadf\AppData\Local\Python\pythoncore-3.14-64\Scripts\flet.exe build apk --module-name app
