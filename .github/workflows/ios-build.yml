@@ -35,4 +35,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Riso_CPC_iOS
-          path: build/ios/ipa/*.ipa
+          path: build/**/*.ipa
