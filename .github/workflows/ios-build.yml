@@ -1,0 +1,31 @@
+name: Build iOS
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-ios:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Flet
+        run: pip install flet
+
+      - name: Build iOS App
+        run: flet build ipa --module-name app
+
+      - name: Upload iOS IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: Riso_CPC_iOS
+          path: build/ios/ipa/*.ipa
