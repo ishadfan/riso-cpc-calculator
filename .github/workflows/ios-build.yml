@@ -14,15 +14,23 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/actions-python@v5 # أو actions/setup-python@v5
         with:
           python-version: '3.11'
+
+      # إضافة خطوة تثبيت Flutter الرسمية وسحب الاعتمادات مسبقاً
+      - name: Setup Flutter SDK
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.22.x' # أو الإصدار المدعوم
+          channel: 'stable'
+          cache: true
 
       - name: Install Flet
         run: pip install flet
 
       - name: Build iOS App
-        run: flet build ipa --module-name app
+        run: flet build ipa --module-name app --yes
 
       - name: Upload iOS IPA
         uses: actions/upload-artifact@v4
